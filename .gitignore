@@ -2,5 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/Com.KiddoPay.Auth.Service/bin 
 /Com.KiddoPay.Auth.Service/obj
-/Com.KiddoPay.Auth.Service/bin
+/Com.KiddoPay.Auth.Service.Raw/bin
+/Com.KiddoPay.Auth.Service.Raw/obj
