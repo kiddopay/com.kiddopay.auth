@@ -42,20 +42,29 @@ namespace Com.KiddoPay.Auth.Service
                     // scopes that client has access to
                     AllowedScopes = { "com.kiddopay.payment" }
                 },
+
                 new Client
                 {
                     ClientId = "postman.ro",
                     ClientName = "Postman client w/ resource owner password",
                     // require user to logged in, use the resource owner password for authentication
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
                     // secret for authentication
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
+                    RedirectUris ={
+                        "https://www.getpostman.com/oauth2/callback"
+                    },
                     // scopes that client has access to
-                    AllowedScopes = { "com.kiddopay.payment" }
+                    AllowedScopes = {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "com.kiddopay.payment"
+                    }
                 },
+
                 new Client
                 {
                     ClientId = "com.kiddopay.clients.mvc.frontend",
@@ -71,6 +80,31 @@ namespace Com.KiddoPay.Auth.Service
 
                     RedirectUris           = { "http://localhost:5200/signin-oidc" },
                     PostLogoutRedirectUris = { "http://localhost:5200/signout-callback-oidc" },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "com.kiddopay.payment"
+                    },
+                    AllowOfflineAccess = true
+                },
+
+                new Client
+                {
+                    ClientId = "com.kiddopay.clients.js.frontend",
+                    ClientName = "Frontend JS Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser=true,
+
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+
+                    RedirectUris           = { "http://localhost:4200/login/callback" },
+                    PostLogoutRedirectUris = { "http://localhost:4200" },
+                    AllowedCorsOrigins = { "http://localhost:4200" },
 
                     AllowedScopes =
                     {

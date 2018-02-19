@@ -5,6 +5,17 @@
     <UserSecretsId>aspnet-Com.KiddoPay.Auth.Service-4D41A6B0-5E58-4836-AA63-A5DAC85C2F55</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Content Remove="Controllers\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <None Remove="Controllers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extensions\UrlHelperExtensions.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.1.0" />
